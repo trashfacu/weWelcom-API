@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "80ee5b20-21f6-49f3-b580-19a872726d95",
+		"name": "WeWelcomChall",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23525288"
+	},
+	"item": [
+		{
+			"name": "add-restaurant",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "WeWelcomToken",
+						"key": "X-API-KEY"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"restaurantName\" : \"test1\",\r\n    \"restaurantAddress\" : \"testtesttest\",\r\n    \"restaurantPhoneNumber\" : \"1234567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/api/restaurants/create"
+			},
+			"response": []
+		},
+		{
+			"name": "get-restaurant by id",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "WeWelcomToken",
+						"key": "X-API-KEY"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}/api/restaurants/1"
+			},
+			"response": []
+		},
+		{
+			"name": "get-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}/restaurants/list"
+			},
+			"response": []
+		},
+		{
+			"name": "update restaurant",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "WeWelcomToken",
+						"key": "X-API-KEY"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"restaurantName\" : \"test2\",\r\n    \"restaurantAddress\" : \"testtesttest2\",\r\n    \"restaurantPhoneNumber\" : \"12345679\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/restaurants/2"
+			},
+			"response": []
+		},
+		{
+			"name": "delete by id",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "WeWelcomToken",
+						"key": "X-API-KEY"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{base_url}}/restaurants/delete/1"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userEmail\" : \"Test@email.com\",\r\n    \"userPassword\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/users/login"
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userEmail\" : \"Test@email.com\",\r\n    \"userPassword\" : \"password\",\r\n    \"userFirstName\" : \"Facundo\",\r\n    \"userLastName\" : \"Mazziotti\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/users/register"
+			},
+			"response": []
+		},
+		{
+			"name": "add review",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "my-api-key",
+						"in": "header",
+						"key": "X-API-KEY"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"reviewText\" : \"esto es una review de prueba\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/review/create/2/1"
+			},
+			"response": []
+		},
+		{
+			"name": "get review",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "password",
+						"username": "test4@email"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}/reviews/2"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "prod_url",
+			"value": "http://35.247.244.99:8080/api",
+			"type": "string"
+		}
+	]
+}

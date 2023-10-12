@@ -48,7 +48,7 @@ public class RestaurantService implements CRUDService <RestaurantDTO, Restaurant
         }
         //check if the restaurant is in the database
         Restaurant restaurant = repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Venue not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
         return mapper.convertValue(restaurant, RestaurantDTO.class);
     }
 
@@ -58,7 +58,7 @@ public class RestaurantService implements CRUDService <RestaurantDTO, Restaurant
             throw new IllegalArgumentException("Invalid restaurant id");
         }
         Restaurant restaurant = repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Venue not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
 
         repository.deleteById(id);
     }
@@ -71,7 +71,7 @@ public class RestaurantService implements CRUDService <RestaurantDTO, Restaurant
 
         Integer restaurantId = restaurantDTO.getRestaurantId();
         if (restaurantId == null || restaurantId <= 0){
-            throw new IllegalArgumentException("Invalid venue id");
+            throw new IllegalArgumentException("Invalid Restaurant id");
         }
 
         if (!repository.existsById(restaurantId)) {

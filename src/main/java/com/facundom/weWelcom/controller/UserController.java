@@ -1,5 +1,6 @@
 package com.facundom.weWelcom.controller;
 
+import com.facundom.weWelcom.model.LoginRequest;
 import com.facundom.weWelcom.model.UserDTO;
 import com.facundom.weWelcom.model.UserResponseDTO;
 import com.facundom.weWelcom.service.UserService;
@@ -23,8 +24,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponseDTO> login(@RequestBody UserDTO userDTO){
-        return ResponseEntity.ok(userService.login(userDTO));
+    public ResponseEntity<UserResponseDTO> login(@RequestBody LoginRequest request){
+        return ResponseEntity.ok(userService.login(request));
     }
 
 }

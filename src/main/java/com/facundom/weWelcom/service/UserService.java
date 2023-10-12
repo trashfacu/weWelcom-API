@@ -3,6 +3,7 @@ package com.facundom.weWelcom.service;
 import com.facundom.weWelcom.exception.UserLoginException;
 import com.facundom.weWelcom.exception.UserRegistrationException;
 import com.facundom.weWelcom.entity.User;
+import com.facundom.weWelcom.model.LoginRequest;
 import com.facundom.weWelcom.model.UserDTO;
 import com.facundom.weWelcom.model.UserResponseDTO;
 import com.facundom.weWelcom.repository.UserRepository;
@@ -50,24 +51,26 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
-    public UserResponseDTO login(UserDTO userDTO) {
+    public UserResponseDTO login(LoginRequest request) {
 
-        User existingUser = repository.findByUserEmail(userDTO.getUserEmail());
+        User existingUser = repository.findByUserEmail(request.getUserEmail());
 
         if (existingUser == null) {
             throw new UserLoginException("User not found");
         }
-        if (!BCrypt.checkpw(userDTO.getUserPassword(), existingUser.getUserPassword())) {
+        if (!BCrypt.checkpw(request.getUserPassword(), existingUser.getUserPassword())) {
             throw new UserLoginException("Bad credentials");
         }
 
         Integer userId = existingUser.getUserId();
+        String userName = existingUser.getUserFirstName();
+        String userLastName = existingUser.getUserLastName();
 
         return UserResponseDTO.builder()
-                .userEmail(userDTO.getUserEmail())
+                .userEmail(request.getUserEmail())
                 .userId(userId)
-                .userFirstName(userDTO.getUserFirstName())
-                .userLastName(userDTO.getUserLastName())
+                .userFirstName(userName)
+                .userLastName(userLastName)
                 .build();
     }
 

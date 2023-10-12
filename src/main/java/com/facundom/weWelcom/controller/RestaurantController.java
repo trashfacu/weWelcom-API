@@ -18,6 +18,7 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
+    @PostMapping
     public ResponseEntity<String> addRestaurant(@RequestBody RestaurantDTO restaurantDTO) throws Exception{
         try {
             restaurantService.create(restaurantDTO);

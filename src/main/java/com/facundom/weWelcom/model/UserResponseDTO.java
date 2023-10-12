@@ -1,22 +1,15 @@
 package com.facundom.weWelcom.model;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponseDTO {
+    // Auth Response
     private Integer userId;
-    @Email
     private String userEmail;
-    @NotBlank
-    @NotNull
     private String userFirstName;
-    @NotBlank @NotNull
     private String userLastName;
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserDTO {
-    @Email
+    // Register Request
     private String userEmail;
     private String userPassword;
     private String userFirstName;
