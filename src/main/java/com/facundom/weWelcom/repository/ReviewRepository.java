@@ -8,8 +8,5 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
-
-    Optional<Review> findByUser_UserEmail(String userEmail);
-
     List<Review> findByRestaurant_RestaurantId(Integer restaurantId);
 }

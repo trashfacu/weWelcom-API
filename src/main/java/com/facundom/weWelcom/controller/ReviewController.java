@@ -6,6 +6,7 @@ import com.facundom.weWelcom.exception.ReviewNotFoundException;
 import com.facundom.weWelcom.model.ReviewDTO;
 import com.facundom.weWelcom.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,16 @@ public class ReviewController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Internal Server Error"));
+        }
+    }
+
+    @DeleteMapping("/{reviewId}")
+    public ResponseEntity<String> deleteReview(@PathVariable Integer reviewId){
+        try {
+            reviewService.delete(reviewId);
+            return ResponseEntity.ok("Review deleted");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -70,4 +71,15 @@ public class ReviewService {
         }
     }
 
+    public void delete (Integer reviewId) throws Exception{
+
+        if (reviewId == null || reviewId <= 0){
+            throw new IllegalArgumentException("Invalid id");
+        }
+
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review not found"));
+
+        reviewRepository.deleteById(reviewId);
+    }
 }
